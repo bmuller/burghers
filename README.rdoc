@@ -1,4 +1,4 @@
-= Burghers : A Ruby Gem for {Open Calais}[http://www.opencalais.com]
+= Burghers : Gem for {OpenCalais}[http://www.opencalais.com]
 
 Burghers is a Ruby gem for {Open Calais}[http://www.opencalais.com].  Unlike some of the other gems out there, Burghers {works with Ruby 2}[https://github.com/abhay/calais/pull/5] and does not {hardcode scores}[https://github.com/PRX/open_calais/blob/master/lib/open_calais/response.rb#L45] or {add arbitrary methods to Ruby's String class}[https://github.com/PRX/open_calais/blob/master/open_calais.gemspec#L28].  Also it's freakin small.  And it will accept URL's!
 
