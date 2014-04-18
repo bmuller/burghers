@@ -1,0 +1,50 @@
+= Burghers : A Ruby Gem for [Open Calais](http://www.opencalais.com)
+
+Burghers is a Ruby gem for {Open Calais}[http://www.opencalais.com].  Unlike some of the other gems out there, Burghers {works with Ruby 2}[https://github.com/abhay/calais/pull/5] and does not {hardcode scores}[https://github.com/PRX/open_calais/blob/master/lib/open_calais/response.rb#L45] or {add arbitrary methods to Ruby's String class}[https://github.com/PRX/open_calais/blob/master/open_calais.gemspec#L28].  Also it's freakin small.  And it will accept URL's!
+
+== Installation
+
+Add this line to your application's Gemfile:
+
+   gem 'burghers'
+
+And then execute:
+
+   $ bundle
+
+Or install it yourself as:
+
+   $ gem install burghers
+
+== Usage
+
+```
+client = Burghers::Client.new("your api key")
+
+# call enrich on client with text or html content - Burghers will figure out what the
+# content type is automagically
+
+# give some Text
+content = "The government of the United Kingdom has given corporations like fast food chain McDonald's the right to award high school qualifications to employees who complete a company training program."
+puts client.enrich(content).topics
+ => [{:name=>"Education", :score=>1.0}, {:name=>"Labor", :score=>0.952}, {:name=>"Business_Finance", :score=>0.875}, {:name=>"Politics", :score=>0.566}]
+
+# give some HTML
+content = "<html><body>The government of the United Kingdom has given corporations like fast food chain McDonald's the right to award high school qualifications to employees who complete a company training program.</html></body>"
+puts client.enrich(content).topics
+ => [{:name=>"Education", :score=>1.0}, {:name=>"Labor", :score=>0.952}, {:name=>"Business_Finance", :score=>0.875}, {:name=>"Politics", :score=>0.566}]
+
+# But wait, THERE'S MORE - you can give a url too:
+content = "http://www.washingtonpost.com/lifestyle/style/rep-vance-mcallister-kissed-now-can-he-make-up-with-voters-after-the-scandal/2014/04/16/9a898fde-c57c-11e3-9f37-7ce307c56815_story.html"
+puts client.enrich(content).topics
+ => [{:name=>"Politics", :score=>0.57}]
+```
+
+Responses to enrich will all respond to topics, tags, entities, and relations with the result from the API call.
+
+== Documentation
+Run:
+
+```shell
+bundle exec rake doc
+```
