@@ -43,4 +43,16 @@ Responses to enrich will all respond to topics, tags, entities, and relations wi
 == Documentation
 Run:
 
-   bundle exec rake doc
+    bundle exec rake doc
+
+== OpenCalais Test Account
+This was an account made just for the tests.
+
+    username: createbubbles
+    email: createbubbles@mailinator.com
+    password: T3E3gCppAD
+    api key: 3zjwnzgr6ptek99nqgebwx9r
+
+== Running tests
+
+    rake
