@@ -14,10 +14,12 @@ module Burghers
         content_type = "text/html"
       end
 
-      if content_type.nil? and content.include?("<") and content.include(">")
-        content_type = "text/html"
-      elsif content_type.nil?
-        content_type = "text/raw"
+      if content_type.nil?
+        if html?(content)
+          content_type = "text/html"
+        else
+          content_type = "text/raw"
+        end
       end
 
       headers = {
@@ -30,8 +32,14 @@ module Burghers
       if response.code != 200
         raise "Got response code of #{response.code}: #{response}"
       end
-      
+
       Response.new response.parsed_response
+    end
+
+    private
+
+    def html?(content)
+      content && content.include?("<") && content.include?(">")
     end
   end
 end
