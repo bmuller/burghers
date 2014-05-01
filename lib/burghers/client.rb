@@ -30,7 +30,7 @@ module Burghers
 
       response = HTTParty.post(URI, :body => content, :headers => headers)
       if response.code != 200
-        raise "Got response code of #{response.code}: #{response}"
+        raise CalaisResponseError, "Got response code of #{response.code}: #{response}"
       end
 
       Response.new response.parsed_response

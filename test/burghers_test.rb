@@ -25,7 +25,7 @@ class BurghersTest < MiniTest::Test
 
   def test_with_url
     content = "http://www.washingtonpost.com/lifestyle/style/rep-vance-mcallister-kissed-now-can-he-make-up-with-voters-after-the-scandal/2014/04/16/9a898fde-c57c-11e3-9f37-7ce307c56815_story.html"
-    expected = [{:name=>"Politics", :score=>0.57}]
+    expected = [{:name=>"Politics", :score=>0.66}]
     assert_equal expected, @client.enrich(content).topics
   end
 end

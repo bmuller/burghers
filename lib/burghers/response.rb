@@ -11,7 +11,7 @@ module Burghers
       @relations = []
 
       if @raw['doc']['meta']['language'] == "InputTextTooShort"
-        raise "Document too short to process."
+        raise DocumentTooSmallError, "Document too short to process."
       end
 
       @raw.each do |key, value|
