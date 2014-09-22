@@ -29,7 +29,9 @@ module Burghers
       }.merge(headers || {})
 
       response = HTTParty.post(URI, :body => content, :headers => headers)
-      if response.code != 200
+      if response.code == 500 and response.to_s.include? "supported languages"
+        raise UnsupportedLanguageError, response.to_s
+      elsif response.code != 200
         raise CalaisResponseError, "Got response code of #{response.code}: #{response}"
       end
 
